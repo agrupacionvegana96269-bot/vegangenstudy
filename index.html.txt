@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VeganGen Study | Registro Global de Familias Veganas Multigeneracionales</title>
+  <style>
+    :root {
+      --green: #2d6a4f;
+      --green-light: #52b788;
+      --green-pale: #d8f3dc;
+      --green-mid: #40916c;
+      --dark: #1b1b1b;
+      --gray: #555;
+      --light: #f9fafb;
+      --white: #ffffff;
+      --border: #e0e0e0;
+      --accent: #1b4332;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Georgia', serif; color: var(--dark); background: var(--white); line-height: 1.7; }
+    nav { background: var(--white); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { font-size: 1.3rem; font-weight: bold; color: var(--green); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--green-light); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--gray); font-family: 'Arial', sans-serif; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green); }
+    .lang-toggle { background: var(--green-pale); border: 1px solid var(--green-light); color: var(--green); padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-family: 'Arial', sans-serif; font-weight: bold; transition: all 0.2s; }
+    .lang-toggle:hover { background: var(--green-light); color: white; }
+    .hero { background: linear-gradient(135deg, var(--accent) 0%, var(--green) 60%, var(--green-mid) 100%); color: white; padding: 100px 2rem 80px; text-align: center; }
+    .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3); padding: 6px 18px; border-radius: 20px; font-size: 0.8rem; font-family: 'Arial', sans-serif; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; max-width: 780px; margin: 0 auto 1.2rem; }
+    .hero p { font-size: 1.15rem; max-width: 620px; margin: 0 auto 2.5rem; opacity: 0.9; font-family: 'Arial', sans-serif; }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary { background: var(--green-light); color: white; padding: 14px 32px; border-radius: 6px; text-decoration: none; font-family: 'Arial', sans-serif; font-weight: bold; font-size: 1rem; transition: all 0.2s; border: none; cursor: pointer; }
+    .btn-primary:hover { background: #74c69d; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: white; padding: 14px 32px; border-radius: 6px; text-decoration: none; font-family: 'Arial', sans-serif; font-size: 1rem; border: 2px solid rgba(255,255,255,0.5); transition: all 0.2s; }
+    .btn-secondary:hover { border-color: white; background: rgba(255,255,255,0.1); }
+    .stats-bar { background: var(--green-pale); padding: 2rem; display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 2rem; font-weight: bold; color: var(--green); }
+    .stat-label { font-family: 'Arial', sans-serif; font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
+    section { padding: 80px 2rem; max-width: 1000px; margin: 0 auto; }
+    .section-full { max-width: 100%; padding: 80px 2rem; }
+    .section-full-inner { max-width: 1000px; margin: 0 auto; }
+    .section-tag { font-family: 'Arial', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green-light); font-weight: bold; margin-bottom: 0.8rem; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); color: var(--accent); margin-bottom: 1rem; }
+    .lead { font-size: 1.05rem; color: var(--gray); font-family: 'Arial', sans-serif; max-width: 700px; margin-bottom: 2.5rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .card { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 1.8rem; transition: box-shadow 0.2s; }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .card-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.6rem; }
+    .card p { font-family: 'Arial', sans-serif; font-size: 0.92rem; color: var(--gray); }
+    .science-bg { background: var(--accent); color: white; }
+    .science-bg h2 { color: var(--green-pale); }
+    .science-bg .section-tag { color: var(--green-light); }
+    .science-bg .lead { color: rgba(255,255,255,0.8); }
+    .science-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .science-point { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); border-radius: 10px; padding: 1.5rem; }
+    .science-point h4 { color: var(--green-light); margin-bottom: 0.5rem; font-size: 1rem; }
+    .science-point p { font-family: 'Arial', sans-serif; font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+    .form-bg { background: var(--light); }
+    .form-container { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem; max-width: 680px; margin: 0 auto; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .form-group { margin-bottom: 1.4rem; }
+    label { display: block; font-family: 'Arial', sans-serif; font-size: 0.88rem; font-weight: bold; color: var(--dark); margin-bottom: 6px; }
+    input, select, textarea { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: 6px; font-family: 'Arial', sans-serif; font-size: 0.95rem; color: var(--dark); background: white; transition: border-color 0.2s; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(82,183,136,0.15); }
+    textarea { resize: vertical; min-height: 90px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .checkbox-group { display: flex; align-items: flex-start; gap: 10px; margin-top: 0.5rem; }
+    .checkbox-group input[type="checkbox"] { width: auto; margin-top: 3px; }
+    .checkbox-group label { font-weight: normal; font-size: 0.88rem; color: var(--gray); margin-bottom: 0; }
+    .submit-btn { width: 100%; background: var(--green); color: white; padding: 14px; border: none; border-radius: 6px; font-size: 1rem; font-family: 'Arial', sans-serif; font-weight: bold; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+    .submit-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+    .form-note { text-align: center; font-family: 'Arial', sans-serif; font-size: 0.8rem; color: var(--gray); margin-top: 1rem; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .contact-info h3 { color: var(--accent); margin-bottom: 1rem; }
+    .contact-info p { font-family: 'Arial', sans-serif; font-size: 0.95rem; color: var(--gray); margin-bottom: 1rem; }
+    .contact-links { list-style: none; margin-top: 1.5rem; }
+    .contact-links li { font-family: 'Arial', sans-serif; font-size: 0.92rem; color: var(--gray); padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .contact-links li span { color: var(--green); font-weight: bold; }
+    footer { background: var(--dark); color: rgba(255,255,255,0.6); text-align: center; padding: 2rem; font-family: 'Arial', sans-serif; font-size: 0.85rem; }
+    footer a { color: var(--green-light); text-decoration: none; }
+    .es { display: block; } .en { display: none; }
+    body.lang-en .es { display: none; } body.lang-en .en { display: block; }
+    span.es, a.es { display: inline; } span.en, a.en { display: none; }
+    body.lang-en span.es, body.lang-en a.es { display: none; }
+    body.lang-en span.en, body.lang-en a.en { display: inline; }
+    .hook-phrase { background: linear-gradient(135deg, var(--accent), var(--green-mid)); color: white; text-align: center; padding: 3rem 2rem; border-radius: 12px; margin-bottom: 3rem; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .hook-phrase p { font-size: clamp(1.2rem, 3vw, 1.7rem); font-style: italic; line-height: 1.5; color: white; font-family: 'Georgia', serif; }
+    .hook-phrase strong { color: var(--green-light); font-style: normal; }
+    @media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } .contact-grid { grid-template-columns: 1fr; } .stats-bar { gap: 2rem; } nav { padding: 0 1rem; } .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">Vegan<span>Gen</span> Study</div>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="es">El Proyecto</span><span class="en">The Project</span></a></li>
+    <li><a href="#science"><span class="es">Ciencia</span><span class="en">Science</span></a></li>
+    <li><a href="#register"><span class="es">Registrarse</span><span class="en">Register</span></a></li>
+    <li><a href="#contact"><span class="es">Contacto</span><span class="en">Contact</span></a></li>
+  </ul>
+  <button class="lang-toggle" onclick="toggleLang()">🌐 EN / ES</button>
+</nav>
+<div class="hero">
+  <div class="hero-badge es">Iniciativa Científica Internacional</div>
+  <div class="hero-badge en">International Scientific Initiative</div>
+  <h1 class="es">El primer registro global de familias veganas multigeneracionales</h1>
+  <h1 class="en">The first global registry of multi-generational vegan families</h1>
+  <p class="es">Documentamos la salud de familias donde al menos dos generaciones han llevado una dieta 100% vegetal desde el nacimiento. Tu participación puede cambiar la ciencia nutricional.</p>
+  <p class="en">We document the health of families where at least two generations have followed a 100% plant-based diet from birth. Your participation could change nutritional science.</p>
+  <div class="hero-buttons">
+    <a href="#register" class="btn-primary es">Quiero registrarme</a>
+    <a href="#register" class="btn-primary en">Register my family</a>
+    <a href="#about" class="btn-secondary es">Conocer más</a>
+    <a href="#about" class="btn-secondary en">Learn more</a>
+  </div>
+</div>
+<div class="stats-bar">
+  <div class="stat"><div class="stat-number">0</div><div class="stat-label es">Estudios longitudinales existentes</div><div class="stat-label en">Existing longitudinal studies</div></div>
+  <div class="stat"><div class="stat-number">~10K</div><div class="stat-label es">Familias estimadas en el mundo</div><div class="stat-label en">Estimated families worldwide</div></div>
+  <div class="stat"><div class="stat-number">2</div><div class="stat-label es">Generaciones mínimas requeridas</div><div class="stat-label en">Minimum generations required</div></div>
+  <div class="stat"><div class="stat-number">∞</div><div class="stat-label es">Potencial impacto científico</div><div class="stat-label en">Potential scientific impact</div></div>
+</div>
+<section id="about">
+  <div class="section-tag es">¿Por qué esto importa?</div>
+  <div class="section-tag en">Why does this matter?</div>
+  <h2 class="es">La pregunta que la ciencia todavía no respondió</h2>
+  <h2 class="en">The question science hasn't answered yet</h2>
+  <p class="lead es">Sabemos que una dieta vegetal bien planificada es saludable. Pero no tenemos datos sobre personas que nunca han consumido proteína animal en toda su vida, desde antes de nacer. Eso es exactamente lo que este proyecto busca documentar.</p>
+  <p class="lead en">We know a well-planned plant-based diet is healthy. But we have no data on people who have never consumed animal protein in their entire lives — from before birth. That is exactly what this project aims to document.</p>
+  <div class="cards">
+    <div class="card"><div class="card-icon">🧬</div><h3 class="es">Vacío científico real</h3><h3 class="en">A real scientific gap</h3><p class="es">No existen cohortes documentadas de adultos que hayan sido veganos desde el embarazo de su madre. Este registro es el primer paso para llenar ese vacío.</p><p class="en">There are no documented cohorts of adults who have been vegan since their mother's pregnancy. This registry is the first step to fill that gap.</p></div>
+    <div class="card"><div class="card-icon">📊</div><h3 class="es">Epidemiología ausente</h3><h3 class="en">Missing epidemiology</h3><p class="es">¿Cuántos niños veganos multigeneracionales padecen obesidad, diabetes tipo 2 o enfermedades cardiovasculares? Nadie lo sabe porque nadie lo midió.</p><p class="en">How many multigenerational vegan children suffer from obesity, type 2 diabetes or cardiovascular disease? Nobody knows because nobody measured it.</p></div>
+    <div class="card"><div class="card-icon">🌍</div><h3 class="es">Alcance global</h3><h3 class="en">Global reach</h3><p class="es">Buscamos familias en todo el mundo para construir una base de datos suficientemente grande y estadísticamente significativa.</p><p class="en">We seek families worldwide to build a database large enough to be statistically significant.</p></div>
+    <div class="card"><div class="card-icon">🏛️</div><h3 class="es">Respaldo institucional</h3><h3 class="en">Institutional backing</h3><p class="es">Este registro será presentado a organismos como la Universidad de Loma Linda, PCRM y la OMS para impulsar un estudio formal financiado.</p><p class="en">This registry will be presented to institutions like Loma Linda University, PCRM and the WHO to drive a formally funded study.</p></div>
+  </div>
+</section>
+<div class="section-full science-bg" id="science">
+  <div class="section-full-inner">
+    <div class="section-tag es">Fundamento científico</div>
+    <div class="section-tag en">Scientific basis</div>
+    <h2 class="es">Lo que la evidencia parcial ya sugiere</h2>
+    <h2 class="en">What partial evidence already suggests</h2>
+    <p class="lead es">Aunque no existen estudios multigeneracionales completos, la literatura científica disponible apunta en una dirección consistente.</p>
+    <p class="lead en">Although complete multigenerational studies don't exist, available scientific literature points in a consistent direction.</p>
+    <div class="science-points">
+      <div class="science-point"><h4 class="es">Perfil cardiovascular</h4><h4 class="en">Cardiovascular profile</h4><p class="es">Estudios de la Universidad de Toronto muestran que niños veganos presentan marcadores cardiovasculares significativamente más favorables que sus pares omnívoros.</p><p class="en">Studies from the University of Toronto show that vegan children have significantly more favorable cardiovascular markers than their omnivore peers.</p></div>
+      <div class="science-point"><h4 class="es">Aterosclerosis</h4><h4 class="en">Atherosclerosis</h4><p class="es">El Dr. William C. Roberts señala que la aterosclerosis aparece en humanos que consumen productos animales, no en quienes se abstienen.</p><p class="en">Dr. William C. Roberts notes that atherosclerosis appears in humans who consume animal products, not in those who abstain.</p></div>
+      <div class="science-point"><h4 class="es">Anatomía comparada</h4><h4 class="en">Comparative anatomy</h4><p class="es">El Dr. Milton Mills documenta que la anatomía digestiva humana comparte más características con los herbívoros que con los omnívoros verdaderos.</p><p class="en">Dr. Milton Mills documents that human digestive anatomy shares more characteristics with herbivores than with true omnivores.</p></div>
+      <div class="science-point"><h4 class="es">China Study</h4><h4 class="en">China Study</h4><p class="es">El estudio liderado por el Dr. T. Colin Campbell (Cornell) vincula el consumo de proteína animal con las principales enfermedades crónicas.</p><p class="en">The study led by Dr. T. Colin Campbell (Cornell) links animal protein consumption with the main chronic diseases.</p></div>
+      <div class="science-point"><h4 class="es">Comunidades de referencia</h4><h4 class="en">Reference communities</h4><p class="es">Poblaciones como los Tarahumara y los Adventistas de Loma Linda muestran tasas mínimas de enfermedades crónicas con dietas predominantemente vegetales.</p><p class="en">Populations such as the Tarahumara and Loma Linda Adventists show minimal rates of chronic diseases with predominantly plant-based diets.</p></div>
+      <div class="science-point"><h4 class="es">La pregunta pendiente</h4><h4 class="en">The pending question</h4><p class="es">Ninguno de estos estudios responde qué pasa cuando se elimina toda exposición a proteína animal desde la concepción. Eso es lo que VeganGen Study busca documentar.</p><p class="en">None of these studies answer what happens when all exposure to animal protein is eliminated from conception. That is what VeganGen Study seeks to document.</p></div>
+    </div>
+  </div>
+</div>
+<div class="section-full form-bg" id="register">
+  <div class="section-full-inner">
+    <div class="hook-phrase">
+      <p class="es">"Si alguna vez te criticaron por criar a tus hijos con una dieta vegana... su salud es la mejor respuesta. <strong>Contanos.</strong>"</p>
+      <p class="en">"If you were ever criticized for raising your children on a vegan diet... their health is the best answer. <strong>Tell us about it.</strong>"</p>
+    </div>
+    <div style="text-align:center; margin-bottom: 2.5rem;">
+      <div class="section-tag es" style="display:inline-block;">Participar</div>
+      <div class="section-tag en" style="display:inline-block;">Participate</div>
+      <h2 class="es">Registrá tu familia</h2>
+      <h2 class="en">Register your family</h2>
+      <p class="lead es" style="margin: 0 auto;">Este registro es voluntario, anónimo y sin compromiso.</p>
+      <p class="lead en" style="margin: 0 auto;">This registry is voluntary, anonymous and non-binding.</p>
+    </div>
+    <div class="form-container">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="es">País de residencia *</label>
+            <label class="en">Country of residence *</label>
+            <select required>
+              <option value="">--</option>
+              <option>Argentina</option><option>Australia</option><option>Brazil / Brasil</option><option>Canada</option><option>Chile</option><option>Colombia</option><option>Deutschland / Germany</option><option>España / Spain</option><option>France</option><option>Israel</option><option>México</option><option>Netherlands</option><option>New Zealand</option><option>United Kingdom</option><option>United States</option><option>Uruguay</option><option>Other / Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="es">Años como familia vegana *</label>
+            <label class="en">Years as a vegan family *</label>
+            <select required>
+              <option value="">--</option>
+              <option>5-10 años / years</option><option>10-15 años / years</option><option>15-20 años / years</option><option>Más de 20 / More than 20</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="es">Generaciones veganas en tu familia *</label>
+          <label class="en">Vegan generations in your family *</label>
+          <select required>
+            <option value="">--</option>
+            <option>2 generaciones / 2 generations</option>
+            <option>3 generaciones / 3 generations</option>
+            <option>Más de 3 / More than 3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="es">¿Los niños fueron veganos desde el embarazo? *</label>
+          <label class="en">Were the children vegan from pregnancy? *</label>
+          <select required>
+            <option value="">--</option>
+            <option>Sí, embarazo y lactancia / Yes, pregnancy and breastfeeding</option>
+            <option>Solo embarazo / Only pregnancy</option>
+            <option>No, después del nacimiento / No, after birth</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="es">Hijos veganos desde el nacimiento</label>
+            <label class="en">Children vegan from birth</label>
+            <input type="number" min="0" max="20" placeholder="0" />
+          </div>
+          <div class="form-group">
+            <label class="es">Edad del hijo más joven (años)</label>
+            <label class="en">Age of youngest child (years)</label>
+            <input type="number" min="0" max="40" placeholder="0" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="es">¿Algún miembro tuvo alguna de estas condiciones? (opcional)</label>
+          <label class="en">Has any family member had any of these conditions? (optional)</label>
+          <select>
+            <option value="">-- Ninguna / None --</option>
+            <option>Obesidad / Obesity</option><option>Diabetes tipo 2 / Type 2 diabetes</option><option>Enfermedad cardiovascular / Cardiovascular disease</option><option>Cáncer / Cancer</option><option>Múltiples / Multiple</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="es">Tu testimonio (opcional pero muy valioso)</label>
+          <label class="en">Your testimony (optional but very valuable)</label>
+          <textarea placeholder="¿Te criticaron por criar a tus hijos con dieta vegana? ¿Cómo está su salud hoy? / Were you criticized? How is their health today?" style="min-height: 120px;"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="es">Email de contacto (opcional)</label>
+          <label class="en">Contact email (optional)</label>
+          <input type="email" placeholder="ejemplo@correo.com" />
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="consent" required />
+          <label for="consent" class="es">Entiendo que mis datos son anónimos y serán utilizados exclusivamente con fines científicos. *</label>
+          <label for="consent" class="en">I understand my data is anonymous and will be used exclusively for scientific purposes. *</label>
+        </div>
+        <button type="submit" class="submit-btn es">Enviar mi registro →</button>
+        <button type="submit" class="submit-btn en">Submit my registration →</button>
+        <p class="form-note es">Tu participación es completamente voluntaria.</p>
+        <p class="form-note en">Your participation is completely voluntary.</p>
+      </form>
+    </div>
+  </div>
+</div>
+<section id="contact">
+  <div class="section-tag es">Sumate al proyecto</div>
+  <div class="section-tag en">Join the project</div>
+  <h2 class="es">Contacto e instituciones aliadas</h2>
+  <h2 class="en">Contact and partner institutions</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3 class="es">¿Sos médico, investigador o institución?</h3>
+      <h3 class="en">Are you a doctor, researcher or institution?</h3>
+      <p class="es">Este registro busca alianzas con universidades y organizaciones de salud para convertirse en un estudio formal con publicación en revistas revisadas por pares.</p>
+      <p class="en">This registry seeks alliances with universities and health organizations to become a formal study published in peer-reviewed journals.</p>
+      <ul class="contact-links">
+        <li><span class="es">Instituciones objetivo:</span><span class="en">Target institutions:</span> Loma Linda University, PCRM, Cornell</li>
+        <li><span class="es">Área:</span><span class="en">Area:</span> Epidemiología nutricional / Nutritional epidemiology</li>
+        <li><span class="es">Tipo de estudio:</span><span class="en">Study type:</span> Cohorte prospectiva / Prospective cohort</li>
+      </ul>
+    </div>
+    <div class="contact-info">
+      <h3 class="es">Difundí el proyecto</h3>
+      <h3 class="en">Spread the project</h3>
+      <p class="es">Cuantas más familias participen, más significativo será el estudio. Compartí este sitio con comunidades veganas y redes de salud natural.</p>
+      <p class="en">The more families participate, the more significant the study. Share this site with vegan communities and natural health networks.</p>
+      <p class="es">Cada registro cuenta. La ciencia que no existe hoy, la construimos entre todos.</p>
+      <p class="en">Every registration counts. The science that doesn't exist today, we build together.</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>VeganGen Study &mdash; <span class="es">Iniciativa Científica Internacional · 2026</span><span class="en">International Scientific Initiative · 2026</span></p>
+  <p style="margin-top: 8px;"><span class="es">Este sitio es un prototipo de registro. No reemplaza asesoramiento médico.</span><span class="en">This site is a registration prototype. It does not replace medical advice.</span></p>
+</footer>
+<script>
+  function toggleLang() { document.body.classList.toggle('lang-en'); }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const isEn = document.body.classList.contains('lang-en');
+    alert(isEn ? '✅ Thank you! Your registration has been recorded.' : '✅ ¡Gracias! Tu registro fue recibido.');
+  }
+</script>
+</body>
+</html>
